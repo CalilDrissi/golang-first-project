@@ -27,7 +27,8 @@ func main() {
 			break
 		} else {
 
-			fmt.Println(doctor.Response(userInput))
+			response := doctor.Response(userInput)
+			fmt.Println(response)
 		}
 
 	}
