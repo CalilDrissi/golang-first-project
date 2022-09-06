@@ -2,15 +2,34 @@
 
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"myapp/doctor"
+	"os"
+	"strings"
+)
 
 func main() {
-	// var whatToSay string
-	// whatToSay = "Hello, World!"
-	whatToSay := "Hello, World!"
-	sayHelloWorld(whatToSay)
-}
+	reader := bufio.NewReader(os.Stdin)
+	whatToSay := doctor.Intro()
 
-func sayHelloWorld(whatToSay string) {
 	fmt.Println(whatToSay)
+
+	for {
+		fmt.Print("-> ")
+		userInput, _ := reader.ReadString('\n')
+
+		userInput = strings.Replace(userInput, "\r\n", "", -1)
+		userInput = strings.Replace(userInput, "\n", "", -1)
+
+		if userInput == "quit" {
+			break
+		} else {
+
+			fmt.Println(doctor.Response(userInput))
+		}
+
+	}
+
 }
